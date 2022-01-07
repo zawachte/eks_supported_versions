@@ -1,6 +1,9 @@
 # define the name of the virtual environment directory
 VENV := venv
 
+TWINE_USERNAME ?= ""
+TWINE_PASSWORD ?= ""
+
 # default target, when make executed without arguments
 all: venv
 
@@ -24,4 +27,4 @@ test: venv
 	PYTHONPATH="." pytest ./tests
 
 publish:
-	twine upload dist/*
+	TWINE_USERNAME=$(TWINE_USERNAME) TWINE_PASSWORD=$(TWINE_PASSWORD) twine upload dist/*
